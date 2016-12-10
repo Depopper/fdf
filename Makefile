@@ -1,6 +1,7 @@
 NAME = fdf
 
 SRC = 	main.c \
+		parser.c \
 
 
 INCLUDES = -Ilibft/includes  -Iinclude
@@ -21,7 +22,7 @@ all: $(NAME)
 $(NAME): $(DIRS) $(OBJS)
 	@make -C libft
 	@gcc $(OBJS) $(FLAGS) $(LIB_FLAGS) -o $(NAME) -Ofast
-	@echo "\n✅  42SH BUILT !"
+	@echo "\n✅  FDF BUILT !"
 
 $(DIRS):
 	@mkdir  $@
