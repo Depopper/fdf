@@ -3,13 +3,15 @@
 # define LP t_point
 
 #include "libft.h"
+#include <bsd/string.h>
 
 typedef struct s_point	t_point;
 struct					s_point
 {
 	int	x;
 	int	y;
-	int	height;
+	int	z;
+	int	num;
 	LP	*next;
 };
 
@@ -18,5 +20,13 @@ struct					s_point
 */
 
 int						parse_map(LP **first, char *map);
+
+/*
+***** point
+*/
+
+LP						*new_point(int x, int y, int z, int num);
+LP						*push_point(LP **curr, int x, int y, int z);
+void					print_point(LP *first);
 
 #endif

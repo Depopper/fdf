@@ -2,10 +2,11 @@ NAME = fdf
 
 SRC = 	main.c \
 		parser.c \
+		lst_point.c \
 
 
-INCLUDES = -Ilibft/includes  -Iinclude
-LIB_FLAGS =  -Llibft  -lft
+INCLUDES = -Ilibft/includes -Iminilibx -Iinclude
+LIB_FLAGS =  -Llibbsd -Llibft -Lminilibx  -lbsd -lft -lmlx
 FLAGS = $(INCLUDES)
 
 OBJ_DIR = obj
@@ -21,6 +22,7 @@ all: $(NAME)
 
 $(NAME): $(DIRS) $(OBJS)
 	@make -C libft
+	@make -C minilibx
 	@gcc $(OBJS) $(FLAGS) $(LIB_FLAGS) -o $(NAME) -Ofast
 	@echo "\n✅  FDF BUILT !"
 
@@ -29,7 +31,7 @@ $(DIRS):
 
 $(OBJ_DIR)/%.o: %.c
 	@gcc  $(FLAGS) -c $< -o $@ -g3
-	@echo "$(NAME) => \033[33;32m$@\033[33;0m"
+	@echo "$(NAME) => \e[33;32m$@\e[33;0m"
 
 clean:
 	rm -rf $(DIRS)

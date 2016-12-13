@@ -32,18 +32,17 @@ static int	get_point(char **line, int *z)
 static int	parse_line(LP **first, char *line)
 {
 	static int size_line = 0;
-	static int nb = 0;
 	static int y = 0;
 	int tab[3] = {0,0,1}; // tab[0] = x , tab[1] = z , tab[2] = ret
+	LP *curr;
 
+	curr = NULL;
 	while(tab[2] > 0)
 	{
 		tab[2] = get_point(&line, &(tab[1]));
 		tab[0] += 1;
-		nb += 1;
-		printf("Point numero : %d (x=%d,y=%d,z=%d) => %d\n", nb, tab[0], y, tab[1], tab[2]);
+		curr = push_point(first, tab[0], y, tab[1]);
 	}
-	ft_putendl("");
 	if(tab[2] == -1 || (size_line > 1 && size_line != tab[0]))
 		return(-1);
 	size_line = tab[0];
